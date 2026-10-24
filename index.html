@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MY DOLL</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, sans-serif;
+      text-align: center;
+      background: linear-gradient(#fff0f7, #eef8ff);
+      min-height: 100vh;
+      color: #765d82;
+    }
+
+    .box {
+      margin: 40px 20px;
+      padding: 30px 20px;
+      background: white;
+      border-radius: 28px;
+      box-shadow: 0 10px 30px #decfe6;
+    }
+
+    h1 {
+      color: #ee72ad;
+    }
+
+    #doll {
+      font-size: 150px;
+      margin: 30px 0;
+    }
+
+    button {
+      padding: 14px 18px;
+      margin: 5px;
+      border: 2px solid #ffd1e6;
+      border-radius: 15px;
+      background: white;
+      font-size: 17px;
+    }
+
+    button:active {
+      background: #ffe4f0;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="box">
+
+  <h1>♡ MY DOLL</h1>
+
+  <p>紙娃娃捏角器 Safari 測試</p>
+
+  <div id="doll">👧🏻</div>
+
+  <h3>膚色</h3>
+
+  <button onclick="skin('👧🏻')">👐🏻</button>
+  <button onclick="skin('👧🏼')">👐🏼</button>
+  <button onclick="skin('👧🏽')">👐🏽</button>
+
+  <p id="status">請選擇膚色 ♡</p>
+
+</div>
+
+<script>
+function skin(value) {
+  document.getElementById("doll").textContent = value;
+  document.getElementById("status").textContent =
+    "JavaScript 成功運作！♡";
+}
+</script>
+
+</body>
+</html>
