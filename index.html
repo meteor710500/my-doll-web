@@ -1,77 +1,552 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MY DOLL</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: -apple-system, sans-serif;
-      text-align: center;
-      background: linear-gradient(#fff0f7, #eef8ff);
-      min-height: 100vh;
-      color: #765d82;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MY DOLL</title>
 
-    .box {
-      margin: 40px 20px;
-      padding: 30px 20px;
-      background: white;
-      border-radius: 28px;
-      box-shadow: 0 10px 30px #decfe6;
-    }
+<style>
+*{box-sizing:border-box}
 
-    h1 {
-      color: #ee72ad;
-    }
+body{
+margin:0;
+font-family:-apple-system,BlinkMacSystemFont,"PingFang TC",sans-serif;
+background:linear-gradient(150deg,#fff0f7,#eef8ff,#f5efff);
+color:#6d5a75;
+}
 
-    #doll {
-      font-size: 150px;
-      margin: 30px 0;
-    }
+header{
+text-align:center;
+padding:22px 10px 10px;
+}
 
-    button {
-      padding: 14px 18px;
-      margin: 5px;
-      border: 2px solid #ffd1e6;
-      border-radius: 15px;
-      background: white;
-      font-size: 17px;
-    }
+.logo{
+display:inline-block;
+background:linear-gradient(135deg,#ff83bd,#b794ff);
+color:white;
+font-weight:900;
+font-size:25px;
+letter-spacing:2px;
+padding:10px 22px;
+border-radius:30px;
+box-shadow:0 7px 20px #e9bfd7;
+}
 
-    button:active {
-      background: #ffe4f0;
-    }
-  </style>
+.subtitle{
+font-size:13px;
+color:#a58da9;
+margin-top:8px;
+}
+
+.stage{
+margin:10px 14px 18px;
+height:510px;
+background:linear-gradient(#eaf8ff,#fff4f9);
+border:3px solid white;
+border-radius:28px;
+box-shadow:0 10px 30px #decfe6;
+position:relative;
+overflow:hidden;
+}
+
+.stage:before{
+content:"♡　✦　☆　♡　✧";
+position:absolute;
+top:20px;
+left:0;
+right:0;
+text-align:center;
+font-size:25px;
+color:white;
+letter-spacing:12px;
+}
+
+#doll{
+width:100%;
+height:100%;
+}
+
+.panel{
+background:rgba(255,255,255,.92);
+border-radius:28px 28px 0 0;
+padding:20px 15px 40px;
+box-shadow:0 -6px 25px rgba(120,80,130,.1);
+}
+
+.panel h2{
+margin:0 0 5px;
+font-size:22px;
+color:#755f80;
+}
+
+.note{
+font-size:12px;
+color:#ae99b1;
+margin-bottom:18px;
+}
+
+.group{
+padding:15px 0;
+border-top:1px dashed #eadbea;
+}
+
+.group:first-of-type{border-top:none}
+
+.group-title{
+font-weight:800;
+margin-bottom:10px;
+}
+
+.options{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+}
+
+button{
+border:2px solid #eadff1;
+background:white;
+color:#715f78;
+border-radius:14px;
+padding:10px 12px;
+font-weight:700;
+font-size:14px;
+}
+
+button.active{
+border-color:#ff83bd;
+background:#fff0f7;
+color:#e95d9f;
+box-shadow:0 0 0 2px #ffd9e9;
+}
+
+.color{
+width:39px;
+height:39px;
+padding:0;
+border-radius:50%;
+}
+
+.bottom{
+display:flex;
+gap:10px;
+margin-top:20px;
+}
+
+.bottom button{
+flex:1;
+padding:14px;
+}
+
+.reset{
+background:#eee7ff;
+}
+
+.save{
+border:none;
+color:white;
+background:linear-gradient(135deg,#ff83bd,#bd91ff);
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="box">
+<header>
+<div class="logo">♡ MY DOLL</div>
+<div class="subtitle">CREATE YOUR OWN IDOL ✦</div>
+</header>
 
-  <h1>♡ MY DOLL</h1>
+<div class="stage">
+<svg id="doll" viewBox="0 0 420 720"></svg>
+</div>
 
-  <p>紙娃娃捏角器 Safari 測試</p>
+<div class="panel">
 
-  <div id="doll">👧🏻</div>
+<h2>捏出你的專屬偶像 ✦</h2>
+<div class="note">MY DOLL v1・目前為紙娃娃本體測試版</div>
 
-  <h3>膚色</h3>
+<div class="group">
+<div class="group-title">膚色</div>
+<div class="options">
+<button data-type="skin" data-value="#F8D8C5">👐🏻</button>
+<button data-type="skin" data-value="#E7B995">👐🏼</button>
+<button data-type="skin" data-value="#BC8566">👐🏽</button>
+</div>
+</div>
 
-  <button onclick="skin('👧🏻')">👐🏻</button>
-  <button onclick="skin('👧🏼')">👐🏼</button>
-  <button onclick="skin('👧🏽')">👐🏽</button>
+<div class="group">
+<div class="group-title">眼睛樣式</div>
+<div class="options">
+<button data-type="eyes" data-value="normal">一般大眼</button>
+<button data-type="eyes" data-value="cat">魅惑貓眼</button>
+<button data-type="eyes" data-value="puppy">下垂狗狗眼</button>
+</div>
+</div>
 
-  <p id="status">請選擇膚色 ♡</p>
+<div class="group">
+<div class="group-title">眼睛顏色</div>
+<div class="options" id="eyeColors"></div>
+</div>
+
+<div class="group">
+<div class="group-title">眉毛顏色</div>
+<div class="options" id="browColors"></div>
+</div>
+
+<div class="group">
+<div class="group-title">瀏海</div>
+<div class="options">
+<button data-type="bangs" data-value="straight">平瀏海</button>
+<button data-type="bangs" data-value="middle">中分瀏海</button>
+<button data-type="bangs" data-value="side">單邊斜瀏海</button>
+</div>
+</div>
+
+<div class="group">
+<div class="group-title">後髮</div>
+<div class="options">
+
+<button data-type="back" data-value="longStraight">長直髮</button>
+<button data-type="back" data-value="longWavy">長捲髮</button>
+<button data-type="back" data-value="shortStraight">短直髮</button>
+<button data-type="back" data-value="shortWavy">短捲髮</button>
+<button data-type="back" data-value="longTwin">長雙馬尾</button>
+<button data-type="back" data-value="shortTwin">短雙馬尾</button>
+<button data-type="back" data-value="longPony">長單馬尾</button>
+<button data-type="back" data-value="shortPony">短單馬尾</button>
+<button data-type="back" data-value="singleBun">單顆丸子頭</button>
+<button data-type="back" data-value="doubleBun">雙顆丸子頭</button>
+
+</div>
+</div>
+
+<div class="group">
+<div class="group-title">髮色</div>
+<div class="options" id="hairColors"></div>
+</div>
+
+<div class="bottom">
+<button class="reset" id="reset">↻ 重設</button>
+<button class="save" id="save">♡ 儲存角色</button>
+</div>
 
 </div>
 
 <script>
-function skin(value) {
-  document.getElementById("doll").textContent = value;
-  document.getElementById("status").textContent =
-    "JavaScript 成功運作！♡";
+
+const palette=[
+"#F29ABD",
+"#C95762",
+"#DF9458",
+"#D8B956",
+"#6DA36E",
+"#79BCCC",
+"#6487BD",
+"#8D71B2",
+"#3C3840",
+"#9C9AA0",
+"#EEE9E3",
+"#80614F"
+];
+
+const state={
+skin:"#F8D8C5",
+eyes:"normal",
+eyeColor:"#8D71B2",
+browColor:"#80614F",
+bangs:"straight",
+back:"longStraight",
+hairColor:"#80614F"
+};
+
+function colorButtons(id,type){
+
+const box=document.getElementById(id);
+
+palette.forEach(color=>{
+
+const b=document.createElement("button");
+
+b.className="color";
+b.style.background=color;
+
+b.dataset.type=type;
+b.dataset.value=color;
+
+box.appendChild(b);
+
+});
+
 }
+
+colorButtons("eyeColors","eyeColor");
+colorButtons("browColors","browColor");
+colorButtons("hairColors","hairColor");
+
+function backHair(){
+
+let c=state.hairColor;
+let s=state.back;
+
+if(s==="longStraight")
+return `<path d="M128 170 Q130 65 210 65 Q290 65 292 170 L304 510 Q270 535 244 492 L210 520 L176 492 Q148 535 116 510Z" fill="${c}" stroke="#66505a" stroke-width="3"/>`;
+
+if(s==="longWavy")
+return `<path d="M130 170 Q130 65 210 65 Q290 65 290 170 Q320 220 288 265 Q320 310 288 360 Q320 410 280 505 Q250 535 226 495 Q210 530 190 495 Q160 535 128 505 Q95 420 132 365 Q98 315 134 268 Q100 220 130 170Z" fill="${c}" stroke="#66505a" stroke-width="3"/>`;
+
+if(s==="shortStraight")
+return `<path d="M130 165 Q135 65 210 65 Q285 65 290 165 L282 270 Q250 295 210 280 Q170 295 138 270Z" fill="${c}" stroke="#66505a" stroke-width="3"/>`;
+
+if(s==="shortWavy")
+return `<path d="M132 165 Q132 70 210 67 Q288 70 288 165 Q310 205 282 232 Q302 260 270 282 Q240 300 210 280 Q180 300 150 282 Q118 260 138 232 Q110 205 132 165Z" fill="${c}" stroke="#66505a" stroke-width="3"/>`;
+
+if(s==="longTwin" || s==="shortTwin"){
+
+let y=s==="longTwin"?470:315;
+
+return `
+<path d="M145 115 Q100 110 85 175 Q65 260 100 ${y} Q135 ${y+20} 150 ${y-35}Z" fill="${c}" stroke="#66505a" stroke-width="3"/>
+<path d="M275 115 Q320 110 335 175 Q355 260 320 ${y} Q285 ${y+20} 270 ${y-35}Z" fill="${c}" stroke="#66505a" stroke-width="3"/>
+<ellipse cx="210" cy="145" rx="80" ry="76" fill="${c}" stroke="#66505a" stroke-width="3"/>
+`;
+
+}
+
+if(s==="longPony" || s==="shortPony"){
+
+let y=s==="longPony"?455:310;
+
+return `
+<path d="M265 105 Q345 100 330 190 Q310 260 330 ${y} Q290 ${y+20} 270 ${y-45} Q300 230 270 160Z" fill="${c}" stroke="#66505a" stroke-width="3"/>
+<ellipse cx="210" cy="145" rx="80" ry="76" fill="${c}" stroke="#66505a" stroke-width="3"/>
+`;
+
+}
+
+if(s==="singleBun")
+return `
+<circle cx="210" cy="60" r="45" fill="${c}" stroke="#66505a" stroke-width="3"/>
+<ellipse cx="210" cy="145" rx="80" ry="76" fill="${c}" stroke="#66505a" stroke-width="3"/>
+`;
+
+return `
+<circle cx="145" cy="82" r="37" fill="${c}" stroke="#66505a" stroke-width="3"/>
+<circle cx="275" cy="82" r="37" fill="${c}" stroke="#66505a" stroke-width="3"/>
+<ellipse cx="210" cy="145" rx="80" ry="76" fill="${c}" stroke="#66505a" stroke-width="3"/>
+`;
+
+}
+
+function bangs(){
+
+let c=state.hairColor;
+
+if(state.bangs==="straight")
+
+return `<path d="M137 136 Q140 72 210 72 Q280 72 283 136 L270 127 L260 146 L245 127 L230 146 L212 126 L195 146 L178 127 L160 145 L150 127Z" fill="${c}" stroke="#66505a" stroke-width="3"/>`;
+
+if(state.bangs==="middle")
+
+return `<path d="M137 138 Q142 72 210 72 Q278 72 283 138 Q255 116 220 113 L210 150 L200 113 Q165 116 137 138Z" fill="${c}" stroke="#66505a" stroke-width="3"/>`;
+
+return `<path d="M137 140 Q142 72 210 72 Q278 72 283 140 Q235 108 168 119 Q190 130 227 132 Q190 148 150 145Z" fill="${c}" stroke="#66505a" stroke-width="3"/>`;
+
+}
+
+function eyes(){
+
+let c=state.eyeColor;
+
+let shape="";
+
+if(state.eyes==="normal")
+
+shape=`
+<ellipse cx="180" cy="153" rx="17" ry="23" fill="white" stroke="#554751" stroke-width="3"/>
+<ellipse cx="240" cy="153" rx="17" ry="23" fill="white" stroke="#554751" stroke-width="3"/>
+`;
+
+if(state.eyes==="cat")
+
+shape=`
+<path d="M160 150 Q180 130 200 149 Q184 177 163 159Z" fill="white" stroke="#554751" stroke-width="3"/>
+<path d="M220 149 Q240 130 260 150 L257 159 Q236 177 220 149Z" fill="white" stroke="#554751" stroke-width="3"/>
+`;
+
+if(state.eyes==="puppy")
+
+shape=`
+<path d="M162 144 Q180 136 198 149 Q195 175 179 178 Q164 174 162 144Z" fill="white" stroke="#554751" stroke-width="3"/>
+<path d="M222 149 Q240 136 258 144 Q256 174 241 178 Q225 175 222 149Z" fill="white" stroke="#554751" stroke-width="3"/>
+`;
+
+return shape+`
+<ellipse cx="180" cy="156" rx="9" ry="14" fill="${c}"/>
+<ellipse cx="240" cy="156" rx="9" ry="14" fill="${c}"/>
+<circle cx="177" cy="151" r="3.5" fill="white"/>
+<circle cx="237" cy="151" r="3.5" fill="white"/>
+<circle cx="180" cy="160" r="4" fill="#342D35"/>
+<circle cx="240" cy="160" r="4" fill="#342D35"/>
+`;
+
+}
+
+function draw(){
+
+const skin=state.skin;
+
+document.getElementById("doll").innerHTML=`
+
+${backHair()}
+
+<!-- legs -->
+<path d="M174 375 Q168 490 174 635 Q177 658 190 637 L202 380Z"
+fill="${skin}" stroke="#AA7F72" stroke-width="2"/>
+
+<path d="M218 380 L230 637 Q243 658 246 635 Q252 490 246 375Z"
+fill="${skin}" stroke="#AA7F72" stroke-width="2"/>
+
+<!-- body -->
+<path d="M174 238
+Q188 225 190 207
+L230 207
+Q232 225 246 238
+Q252 282 246 346
+Q238 380 210 392
+Q182 380 174 346
+Q168 282 174 238Z"
+fill="${skin}" stroke="#AA7F72" stroke-width="2"/>
+
+<!-- arms -->
+<path d="M177 244 Q150 258 134 314
+L102 407 Q95 424 107 428
+Q119 429 126 411
+L163 328 L185 273Z"
+fill="${skin}" stroke="#AA7F72" stroke-width="2"/>
+
+<path d="M243 244 Q270 258 286 314
+L318 407 Q325 424 313 428
+Q301 429 294 411
+L257 328 L235 273Z"
+fill="${skin}" stroke="#AA7F72" stroke-width="2"/>
+
+<!-- basic underwear -->
+<path d="M173 337 Q210 350 247 337
+L246 382 Q210 397 174 382Z"
+fill="#FFF7FB" stroke="#D8A7C2" stroke-width="2"/>
+
+<path d="M178 247 Q210 238 242 247
+L239 292 Q210 301 181 292Z"
+fill="#FFF7FB" stroke="#D8A7C2" stroke-width="2"/>
+
+<!-- neck -->
+<rect x="197" y="193" width="26" height="39" rx="12" fill="${skin}"/>
+
+<!-- face -->
+<ellipse cx="210" cy="151" rx="66" ry="72"
+fill="${skin}" stroke="#AA7F72" stroke-width="2"/>
+
+${eyes()}
+
+<!-- eyebrows -->
+<path d="M164 127 Q180 119 194 128"
+fill="none" stroke="${state.browColor}"
+stroke-width="4" stroke-linecap="round"/>
+
+<path d="M226 128 Q240 119 256 127"
+fill="none" stroke="${state.browColor}"
+stroke-width="4" stroke-linecap="round"/>
+
+<!-- nose -->
+<path d="M208 170 Q212 173 215 170"
+fill="none" stroke="#C88F83" stroke-width="1.5"/>
+
+<!-- mouth -->
+<path d="M195 185 Q210 195 225 185
+Q211 204 195 185Z"
+fill="#DC8F99"/>
+
+${bangs()}
+
+`;
+
+}
+
+function refresh(){
+
+draw();
+
+document.querySelectorAll("button[data-type]").forEach(b=>{
+
+b.classList.toggle(
+"active",
+state[b.dataset.type]===b.dataset.value
+);
+
+});
+
+}
+
+document.querySelectorAll("button[data-type]").forEach(button=>{
+
+button.onclick=()=>{
+
+state[button.dataset.type]=button.dataset.value;
+
+refresh();
+
+};
+
+});
+
+document.getElementById("reset").onclick=()=>{
+
+Object.assign(state,{
+skin:"#F8D8C5",
+eyes:"normal",
+eyeColor:"#8D71B2",
+browColor:"#80614F",
+bangs:"straight",
+back:"longStraight",
+hairColor:"#80614F"
+});
+
+refresh();
+
+};
+
+document.getElementById("save").onclick=()=>{
+
+localStorage.setItem(
+"MY_DOLL_V1",
+JSON.stringify(state)
+);
+
+const button=document.getElementById("save");
+
+button.textContent="✓ 已儲存 ♡";
+
+setTimeout(()=>{
+button.textContent="♡ 儲存角色";
+},1300);
+
+};
+
+try{
+
+const saved=JSON.parse(
+localStorage.getItem("MY_DOLL_V1")
+);
+
+if(saved)
+Object.assign(state,saved);
+
+}catch(e){}
+
+refresh();
+
 </script>
 
 </body>
