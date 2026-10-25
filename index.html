@@ -2,552 +2,740 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
 <title>MY DOLL</title>
 
 <style>
-*{box-sizing:border-box}
-
-body{
-margin:0;
-font-family:-apple-system,BlinkMacSystemFont,"PingFang TC",sans-serif;
-background:linear-gradient(150deg,#fff0f7,#eef8ff,#f5efff);
-color:#6d5a75;
+* {
+  box-sizing: border-box;
 }
 
-header{
-text-align:center;
-padding:22px 10px 10px;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", sans-serif;
+  color: #705d7b;
+  background:
+    radial-gradient(circle at 15% 15%, #fff 0 2px, transparent 3px),
+    linear-gradient(145deg, #fff1f8, #f0f7ff 55%, #f6efff);
+  min-height: 100vh;
 }
 
-.logo{
-display:inline-block;
-background:linear-gradient(135deg,#ff83bd,#b794ff);
-color:white;
-font-weight:900;
-font-size:25px;
-letter-spacing:2px;
-padding:10px 22px;
-border-radius:30px;
-box-shadow:0 7px 20px #e9bfd7;
+/* ===== 標題 ===== */
+
+header {
+  text-align: center;
+  padding: 22px 12px 12px;
 }
 
-.subtitle{
-font-size:13px;
-color:#a58da9;
-margin-top:8px;
+.logo {
+  display: inline-block;
+  padding: 10px 24px;
+  border-radius: 30px;
+
+  background: linear-gradient(135deg, #ff83bd, #b891ff);
+
+  color: white;
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: 2px;
+
+  box-shadow: 0 7px 20px rgba(205, 140, 190, .35);
 }
 
-.stage{
-margin:10px 14px 18px;
-height:510px;
-background:linear-gradient(#eaf8ff,#fff4f9);
-border:3px solid white;
-border-radius:28px;
-box-shadow:0 10px 30px #decfe6;
-position:relative;
-overflow:hidden;
+.subtitle {
+  margin-top: 8px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #a68eae;
 }
 
-.stage:before{
-content:"♡　✦　☆　♡　✧";
-position:absolute;
-top:20px;
-left:0;
-right:0;
-text-align:center;
-font-size:25px;
-color:white;
-letter-spacing:12px;
+
+/* ===== 人物舞台 ===== */
+
+.stage {
+  position: relative;
+
+  height: 540px;
+  margin: 8px 14px 18px;
+
+  overflow: hidden;
+
+  border: 3px solid rgba(255,255,255,.95);
+  border-radius: 28px;
+
+  background:
+    radial-gradient(circle at 20% 20%, #ffffff 0 3px, transparent 4px),
+    radial-gradient(circle at 80% 30%, #ffffff 0 2px, transparent 3px),
+    linear-gradient(180deg, #eaf8ff 0%, #fff2f8 100%);
+
+  box-shadow: 0 12px 32px rgba(140,100,150,.18);
 }
 
-#doll{
-width:100%;
-height:100%;
+/* 背景裝飾 */
+
+.sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.panel{
-background:rgba(255,255,255,.92);
-border-radius:28px 28px 0 0;
-padding:20px 15px 40px;
-box-shadow:0 -6px 25px rgba(120,80,130,.1);
+.star {
+  position: absolute;
+  color: rgba(255,255,255,.9);
+  text-shadow: 0 2px 10px rgba(190,150,220,.25);
 }
 
-.panel h2{
-margin:0 0 5px;
-font-size:22px;
-color:#755f80;
+.s1 {
+  top: 7%;
+  left: 8%;
+  font-size: 30px;
 }
 
-.note{
-font-size:12px;
-color:#ae99b1;
-margin-bottom:18px;
+.s2 {
+  top: 17%;
+  right: 9%;
+  font-size: 24px;
 }
 
-.group{
-padding:15px 0;
-border-top:1px dashed #eadbea;
+.s3 {
+  top: 47%;
+  left: 6%;
+  font-size: 22px;
 }
 
-.group:first-of-type{border-top:none}
-
-.group-title{
-font-weight:800;
-margin-bottom:10px;
+.s4 {
+  top: 60%;
+  right: 7%;
+  font-size: 32px;
 }
 
-.options{
-display:flex;
-gap:8px;
-flex-wrap:wrap;
+.s5 {
+  top: 78%;
+  left: 13%;
+  font-size: 25px;
 }
 
-button{
-border:2px solid #eadff1;
-background:white;
-color:#715f78;
-border-radius:14px;
-padding:10px 12px;
-font-weight:700;
-font-size:14px;
+
+/* ===== 新人物圖片 ===== */
+
+.doll-area {
+  position: absolute;
+  inset: 8px 8px 0;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  z-index: 2;
 }
 
-button.active{
-border-color:#ff83bd;
-background:#fff0f7;
-color:#e95d9f;
-box-shadow:0 0 0 2px #ffd9e9;
+#dollImage {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center bottom;
+
+  -webkit-user-select: none;
+  user-select: none;
+
+  pointer-events: none;
 }
 
-.color{
-width:39px;
-height:39px;
-padding:0;
-border-radius:50%;
+
+/* ===== 測試標籤 ===== */
+
+.test-badge {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  z-index: 3;
+
+  padding: 7px 13px;
+  border-radius: 20px;
+
+  background: rgba(255,255,255,.82);
+  backdrop-filter: blur(6px);
+
+  color: #d16fa2;
+  font-size: 12px;
+  font-weight: 800;
+
+  box-shadow: 0 4px 15px rgba(160,110,150,.12);
 }
 
-.bottom{
-display:flex;
-gap:10px;
-margin-top:20px;
+
+/* ===== 下方 UI ===== */
+
+.panel {
+  padding: 20px 15px 40px;
+
+  background: rgba(255,255,255,.93);
+
+  border-radius: 28px 28px 0 0;
+
+  box-shadow: 0 -6px 25px rgba(120,80,130,.10);
 }
 
-.bottom button{
-flex:1;
-padding:14px;
+.panel h2 {
+  margin: 0 0 5px;
+
+  color: #755f80;
+  font-size: 22px;
 }
 
-.reset{
-background:#eee7ff;
+.note {
+  margin-bottom: 18px;
+
+  color: #ae99b1;
+  font-size: 12px;
+  line-height: 1.6;
 }
 
-.save{
-border:none;
-color:white;
-background:linear-gradient(135deg,#ff83bd,#bd91ff);
+.group {
+  padding: 15px 0;
+  border-top: 1px dashed #eadbea;
+}
+
+.group:first-of-type {
+  border-top: none;
+}
+
+.group-title {
+  margin-bottom: 10px;
+
+  font-weight: 800;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+
+/* ===== 按鈕 ===== */
+
+button {
+  padding: 10px 12px;
+
+  border: 2px solid #eadff1;
+  border-radius: 14px;
+
+  background: white;
+
+  color: #715f78;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:active {
+  transform: scale(.97);
+}
+
+button.active {
+  border-color: #ff83bd;
+
+  background: #fff0f7;
+
+  color: #e95d9f;
+
+  box-shadow: 0 0 0 2px #ffd9e9;
+}
+
+
+/* ===== 色票 ===== */
+
+.color {
+  width: 39px;
+  height: 39px;
+
+  padding: 0;
+
+  border-radius: 50%;
+}
+
+
+/* ===== 底部按鈕 ===== */
+
+.bottom {
+  display: flex;
+  gap: 10px;
+
+  margin-top: 20px;
+}
+
+.bottom button {
+  flex: 1;
+  padding: 14px;
+}
+
+.reset {
+  background: #eee7ff;
+}
+
+.save {
+  border: none;
+
+  background: linear-gradient(135deg, #ff83bd, #bd91ff);
+
+  color: white;
+}
+
+
+/* ===== 提示 ===== */
+
+.message {
+  display: none;
+
+  margin: 12px 0 0;
+  padding: 11px 13px;
+
+  border-radius: 14px;
+
+  background: #fff3f8;
+
+  color: #b66c91;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+
+/* ===== 小尺寸手機 ===== */
+
+@media (max-width: 390px) {
+
+  .stage {
+    height: 500px;
+  }
+
+  .logo {
+    font-size: 22px;
+  }
+
 }
 
 </style>
 </head>
 
+
 <body>
 
+
 <header>
-<div class="logo">♡ MY DOLL</div>
-<div class="subtitle">CREATE YOUR OWN IDOL ✦</div>
+
+  <div class="logo">
+    ♡ MY DOLL
+  </div>
+
+  <div class="subtitle">
+    CREATE YOUR OWN IDOL ✦
+  </div>
+
 </header>
 
+
+<!-- ===== 人物區 ===== -->
+
 <div class="stage">
-<svg id="doll" viewBox="0 0 420 720"></svg>
+
+  <div class="sparkles">
+    <span class="star s1">☆</span>
+    <span class="star s2">♡</span>
+    <span class="star s3">✦</span>
+    <span class="star s4">☆</span>
+    <span class="star s5">♡</span>
+  </div>
+
+  <div class="test-badge">
+    MY DOLL ♡ BASE TEST
+  </div>
+
+  <div class="doll-area">
+
+    <img
+      id="dollImage"
+      src="my-doll-base-v1.jpg?v=2"
+      alt="MY DOLL 基礎少女"
+    >
+
+  </div>
+
 </div>
+
+
+
+<!-- ===== 捏角 UI ===== -->
 
 <div class="panel">
 
-<h2>捏出你的專屬偶像 ✦</h2>
-<div class="note">MY DOLL v1・目前為紙娃娃本體測試版</div>
+  <h2>
+    捏出你的專屬偶像 ✦
+  </h2>
 
-<div class="group">
-<div class="group-title">膚色</div>
-<div class="options">
-<button data-type="skin" data-value="#F8D8C5">👐🏻</button>
-<button data-type="skin" data-value="#E7B995">👐🏼</button>
-<button data-type="skin" data-value="#BC8566">👐🏽</button>
-</div>
+  <div class="note">
+    MY DOLL v1・新立繪載入測試版 ♡<br>
+    目前先確認人物大小、位置與手機顯示效果。
+  </div>
+
+
+  <!-- 膚色 -->
+
+  <div class="group">
+
+    <div class="group-title">
+      膚色
+    </div>
+
+    <div class="options">
+
+      <button class="demo-option active">
+        👐🏻
+      </button>
+
+      <button class="demo-option">
+        👐🏼
+      </button>
+
+      <button class="demo-option">
+        👐🏽
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- 眼型 -->
+
+  <div class="group">
+
+    <div class="group-title">
+      眼睛樣式
+    </div>
+
+    <div class="options">
+
+      <button class="demo-option active">
+        一般大眼
+      </button>
+
+      <button class="demo-option">
+        魅惑貓眼
+      </button>
+
+      <button class="demo-option">
+        下垂狗狗眼
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- 眼睛顏色 -->
+
+  <div class="group">
+
+    <div class="group-title">
+      眼睛顏色
+    </div>
+
+    <div class="options color-list"></div>
+
+  </div>
+
+
+  <!-- 眉毛 -->
+
+  <div class="group">
+
+    <div class="group-title">
+      眉毛顏色
+    </div>
+
+    <div class="options color-list"></div>
+
+  </div>
+
+
+  <!-- 瀏海 -->
+
+  <div class="group">
+
+    <div class="group-title">
+      瀏海
+    </div>
+
+    <div class="options">
+
+      <button class="demo-option active">
+        平瀏海
+      </button>
+
+      <button class="demo-option">
+        中分瀏海
+      </button>
+
+      <button class="demo-option">
+        單邊斜瀏海
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- 後髮 -->
+
+  <div class="group">
+
+    <div class="group-title">
+      後髮
+    </div>
+
+    <div class="options">
+
+      <button class="demo-option active">長直髮</button>
+
+      <button class="demo-option">長捲髮</button>
+
+      <button class="demo-option">短直髮</button>
+
+      <button class="demo-option">短捲髮</button>
+
+      <button class="demo-option">長雙馬尾</button>
+
+      <button class="demo-option">短雙馬尾</button>
+
+      <button class="demo-option">長單馬尾</button>
+
+      <button class="demo-option">短單馬尾</button>
+
+      <button class="demo-option">單顆丸子頭</button>
+
+      <button class="demo-option">雙顆丸子頭</button>
+
+    </div>
+
+  </div>
+
+
+  <!-- 髮色 -->
+
+  <div class="group">
+
+    <div class="group-title">
+      髮色
+    </div>
+
+    <div class="options color-list"></div>
+
+  </div>
+
+
+  <div id="message" class="message">
+    ♡ 現在是「新立繪載入測試版」，所以這些選項暫時只測試按鈕操作。
+    等人物顯示確認完成後，我們再把眼睛、瀏海、後髮拆成真正可以替換的透明圖層。
+  </div>
+
+
+  <div class="bottom">
+
+    <button class="reset" id="reset">
+      ↻ 重設
+    </button>
+
+    <button class="save" id="save">
+      ♡ 確認測試
+    </button>
+
+  </div>
+
 </div>
 
-<div class="group">
-<div class="group-title">眼睛樣式</div>
-<div class="options">
-<button data-type="eyes" data-value="normal">一般大眼</button>
-<button data-type="eyes" data-value="cat">魅惑貓眼</button>
-<button data-type="eyes" data-value="puppy">下垂狗狗眼</button>
-</div>
-</div>
 
-<div class="group">
-<div class="group-title">眼睛顏色</div>
-<div class="options" id="eyeColors"></div>
-</div>
-
-<div class="group">
-<div class="group-title">眉毛顏色</div>
-<div class="options" id="browColors"></div>
-</div>
-
-<div class="group">
-<div class="group-title">瀏海</div>
-<div class="options">
-<button data-type="bangs" data-value="straight">平瀏海</button>
-<button data-type="bangs" data-value="middle">中分瀏海</button>
-<button data-type="bangs" data-value="side">單邊斜瀏海</button>
-</div>
-</div>
-
-<div class="group">
-<div class="group-title">後髮</div>
-<div class="options">
-
-<button data-type="back" data-value="longStraight">長直髮</button>
-<button data-type="back" data-value="longWavy">長捲髮</button>
-<button data-type="back" data-value="shortStraight">短直髮</button>
-<button data-type="back" data-value="shortWavy">短捲髮</button>
-<button data-type="back" data-value="longTwin">長雙馬尾</button>
-<button data-type="back" data-value="shortTwin">短雙馬尾</button>
-<button data-type="back" data-value="longPony">長單馬尾</button>
-<button data-type="back" data-value="shortPony">短單馬尾</button>
-<button data-type="back" data-value="singleBun">單顆丸子頭</button>
-<button data-type="back" data-value="doubleBun">雙顆丸子頭</button>
-
-</div>
-</div>
-
-<div class="group">
-<div class="group-title">髮色</div>
-<div class="options" id="hairColors"></div>
-</div>
-
-<div class="bottom">
-<button class="reset" id="reset">↻ 重設</button>
-<button class="save" id="save">♡ 儲存角色</button>
-</div>
-
-</div>
 
 <script>
 
-const palette=[
-"#F29ABD",
-"#C95762",
-"#DF9458",
-"#D8B956",
-"#6DA36E",
-"#79BCCC",
-"#6487BD",
-"#8D71B2",
-"#3C3840",
-"#9C9AA0",
-"#EEE9E3",
-"#80614F"
+/* ===== 12 色 ===== */
+
+const colors = [
+
+  "#F29ABD",
+  "#C95762",
+  "#DF9458",
+  "#D8B956",
+
+  "#6DA36E",
+  "#79BCCC",
+  "#6487BD",
+  "#8D71B2",
+
+  "#3C3840",
+  "#9C9AA0",
+  "#EEE9E3",
+  "#80614F"
+
 ];
 
-const state={
-skin:"#F8D8C5",
-eyes:"normal",
-eyeColor:"#8D71B2",
-browColor:"#80614F",
-bangs:"straight",
-back:"longStraight",
-hairColor:"#80614F"
-};
 
-function colorButtons(id,type){
+/* 建立三組色票 */
 
-const box=document.getElementById(id);
+document
+  .querySelectorAll(".color-list")
+  .forEach((box) => {
 
-palette.forEach(color=>{
+    colors.forEach((color, index) => {
 
-const b=document.createElement("button");
+      const button =
+        document.createElement("button");
 
-b.className="color";
-b.style.background=color;
+      button.className = "color";
 
-b.dataset.type=type;
-b.dataset.value=color;
+      button.style.background = color;
 
-box.appendChild(b);
+      if (index === 7) {
+        button.classList.add("active");
+      }
 
-});
+      button.addEventListener(
+        "click",
+        function () {
 
-}
+          box
+            .querySelectorAll(".color")
+            .forEach((item) => {
+              item.classList.remove("active");
+            });
 
-colorButtons("eyeColors","eyeColor");
-colorButtons("browColors","browColor");
-colorButtons("hairColors","hairColor");
+          button.classList.add("active");
 
-function backHair(){
+          showMessage();
 
-let c=state.hairColor;
-let s=state.back;
+        }
+      );
 
-if(s==="longStraight")
-return `<path d="M128 170 Q130 65 210 65 Q290 65 292 170 L304 510 Q270 535 244 492 L210 520 L176 492 Q148 535 116 510Z" fill="${c}" stroke="#66505a" stroke-width="3"/>`;
+      box.appendChild(button);
 
-if(s==="longWavy")
-return `<path d="M130 170 Q130 65 210 65 Q290 65 290 170 Q320 220 288 265 Q320 310 288 360 Q320 410 280 505 Q250 535 226 495 Q210 530 190 495 Q160 535 128 505 Q95 420 132 365 Q98 315 134 268 Q100 220 130 170Z" fill="${c}" stroke="#66505a" stroke-width="3"/>`;
+    });
 
-if(s==="shortStraight")
-return `<path d="M130 165 Q135 65 210 65 Q285 65 290 165 L282 270 Q250 295 210 280 Q170 295 138 270Z" fill="${c}" stroke="#66505a" stroke-width="3"/>`;
+  });
 
-if(s==="shortWavy")
-return `<path d="M132 165 Q132 70 210 67 Q288 70 288 165 Q310 205 282 232 Q302 260 270 282 Q240 300 210 280 Q180 300 150 282 Q118 260 138 232 Q110 205 132 165Z" fill="${c}" stroke="#66505a" stroke-width="3"/>`;
 
-if(s==="longTwin" || s==="shortTwin"){
+/* ===== 一般選項按鈕 ===== */
 
-let y=s==="longTwin"?470:315;
+document
+  .querySelectorAll(".group")
+  .forEach((group) => {
 
-return `
-<path d="M145 115 Q100 110 85 175 Q65 260 100 ${y} Q135 ${y+20} 150 ${y-35}Z" fill="${c}" stroke="#66505a" stroke-width="3"/>
-<path d="M275 115 Q320 110 335 175 Q355 260 320 ${y} Q285 ${y+20} 270 ${y-35}Z" fill="${c}" stroke="#66505a" stroke-width="3"/>
-<ellipse cx="210" cy="145" rx="80" ry="76" fill="${c}" stroke="#66505a" stroke-width="3"/>
-`;
+    const buttons =
+      group.querySelectorAll(".demo-option");
 
-}
+    buttons.forEach((button) => {
 
-if(s==="longPony" || s==="shortPony"){
+      button.addEventListener(
+        "click",
+        function () {
 
-let y=s==="longPony"?455:310;
+          buttons.forEach((item) => {
+            item.classList.remove("active");
+          });
 
-return `
-<path d="M265 105 Q345 100 330 190 Q310 260 330 ${y} Q290 ${y+20} 270 ${y-45} Q300 230 270 160Z" fill="${c}" stroke="#66505a" stroke-width="3"/>
-<ellipse cx="210" cy="145" rx="80" ry="76" fill="${c}" stroke="#66505a" stroke-width="3"/>
-`;
+          button.classList.add("active");
 
-}
+          showMessage();
 
-if(s==="singleBun")
-return `
-<circle cx="210" cy="60" r="45" fill="${c}" stroke="#66505a" stroke-width="3"/>
-<ellipse cx="210" cy="145" rx="80" ry="76" fill="${c}" stroke="#66505a" stroke-width="3"/>
-`;
+        }
+      );
 
-return `
-<circle cx="145" cy="82" r="37" fill="${c}" stroke="#66505a" stroke-width="3"/>
-<circle cx="275" cy="82" r="37" fill="${c}" stroke="#66505a" stroke-width="3"/>
-<ellipse cx="210" cy="145" rx="80" ry="76" fill="${c}" stroke="#66505a" stroke-width="3"/>
-`;
+    });
+
+  });
+
+
+/* ===== 測試提示 ===== */
+
+function showMessage() {
+
+  const message =
+    document.getElementById("message");
+
+  message.style.display = "block";
 
 }
 
-function bangs(){
 
-let c=state.hairColor;
+/* ===== 重設 ===== */
 
-if(state.bangs==="straight")
+document
+  .getElementById("reset")
+  .addEventListener(
+    "click",
+    function () {
 
-return `<path d="M137 136 Q140 72 210 72 Q280 72 283 136 L270 127 L260 146 L245 127 L230 146 L212 126 L195 146 L178 127 L160 145 L150 127Z" fill="${c}" stroke="#66505a" stroke-width="3"/>`;
+      location.reload();
 
-if(state.bangs==="middle")
+    }
+  );
 
-return `<path d="M137 138 Q142 72 210 72 Q278 72 283 138 Q255 116 220 113 L210 150 L200 113 Q165 116 137 138Z" fill="${c}" stroke="#66505a" stroke-width="3"/>`;
 
-return `<path d="M137 140 Q142 72 210 72 Q278 72 283 140 Q235 108 168 119 Q190 130 227 132 Q190 148 150 145Z" fill="${c}" stroke="#66505a" stroke-width="3"/>`;
+/* ===== 確認測試 ===== */
 
-}
+document
+  .getElementById("save")
+  .addEventListener(
+    "click",
+    function () {
 
-function eyes(){
+      const button =
+        document.getElementById("save");
 
-let c=state.eyeColor;
+      button.textContent =
+        "✓ 新立繪運行正常 ♡";
 
-let shape="";
+      showMessage();
 
-if(state.eyes==="normal")
+      setTimeout(() => {
 
-shape=`
-<ellipse cx="180" cy="153" rx="17" ry="23" fill="white" stroke="#554751" stroke-width="3"/>
-<ellipse cx="240" cy="153" rx="17" ry="23" fill="white" stroke="#554751" stroke-width="3"/>
-`;
+        button.textContent =
+          "♡ 確認測試";
 
-if(state.eyes==="cat")
+      }, 1800);
 
-shape=`
-<path d="M160 150 Q180 130 200 149 Q184 177 163 159Z" fill="white" stroke="#554751" stroke-width="3"/>
-<path d="M220 149 Q240 130 260 150 L257 159 Q236 177 220 149Z" fill="white" stroke="#554751" stroke-width="3"/>
-`;
+    }
+  );
 
-if(state.eyes==="puppy")
 
-shape=`
-<path d="M162 144 Q180 136 198 149 Q195 175 179 178 Q164 174 162 144Z" fill="white" stroke="#554751" stroke-width="3"/>
-<path d="M222 149 Q240 136 258 144 Q256 174 241 178 Q225 175 222 149Z" fill="white" stroke="#554751" stroke-width="3"/>
-`;
+/* ===== 圖片載入檢查 ===== */
 
-return shape+`
-<ellipse cx="180" cy="156" rx="9" ry="14" fill="${c}"/>
-<ellipse cx="240" cy="156" rx="9" ry="14" fill="${c}"/>
-<circle cx="177" cy="151" r="3.5" fill="white"/>
-<circle cx="237" cy="151" r="3.5" fill="white"/>
-<circle cx="180" cy="160" r="4" fill="#342D35"/>
-<circle cx="240" cy="160" r="4" fill="#342D35"/>
-`;
+const dollImage =
+  document.getElementById("dollImage");
 
-}
+dollImage.addEventListener(
+  "error",
+  function () {
 
-function draw(){
+    document
+      .querySelector(".test-badge")
+      .textContent =
+      "⚠ 人物圖片讀取失敗";
 
-const skin=state.skin;
-
-document.getElementById("doll").innerHTML=`
-
-${backHair()}
-
-<!-- legs -->
-<path d="M174 375 Q168 490 174 635 Q177 658 190 637 L202 380Z"
-fill="${skin}" stroke="#AA7F72" stroke-width="2"/>
-
-<path d="M218 380 L230 637 Q243 658 246 635 Q252 490 246 375Z"
-fill="${skin}" stroke="#AA7F72" stroke-width="2"/>
-
-<!-- body -->
-<path d="M174 238
-Q188 225 190 207
-L230 207
-Q232 225 246 238
-Q252 282 246 346
-Q238 380 210 392
-Q182 380 174 346
-Q168 282 174 238Z"
-fill="${skin}" stroke="#AA7F72" stroke-width="2"/>
-
-<!-- arms -->
-<path d="M177 244 Q150 258 134 314
-L102 407 Q95 424 107 428
-Q119 429 126 411
-L163 328 L185 273Z"
-fill="${skin}" stroke="#AA7F72" stroke-width="2"/>
-
-<path d="M243 244 Q270 258 286 314
-L318 407 Q325 424 313 428
-Q301 429 294 411
-L257 328 L235 273Z"
-fill="${skin}" stroke="#AA7F72" stroke-width="2"/>
-
-<!-- basic underwear -->
-<path d="M173 337 Q210 350 247 337
-L246 382 Q210 397 174 382Z"
-fill="#FFF7FB" stroke="#D8A7C2" stroke-width="2"/>
-
-<path d="M178 247 Q210 238 242 247
-L239 292 Q210 301 181 292Z"
-fill="#FFF7FB" stroke="#D8A7C2" stroke-width="2"/>
-
-<!-- neck -->
-<rect x="197" y="193" width="26" height="39" rx="12" fill="${skin}"/>
-
-<!-- face -->
-<ellipse cx="210" cy="151" rx="66" ry="72"
-fill="${skin}" stroke="#AA7F72" stroke-width="2"/>
-
-${eyes()}
-
-<!-- eyebrows -->
-<path d="M164 127 Q180 119 194 128"
-fill="none" stroke="${state.browColor}"
-stroke-width="4" stroke-linecap="round"/>
-
-<path d="M226 128 Q240 119 256 127"
-fill="none" stroke="${state.browColor}"
-stroke-width="4" stroke-linecap="round"/>
-
-<!-- nose -->
-<path d="M208 170 Q212 173 215 170"
-fill="none" stroke="#C88F83" stroke-width="1.5"/>
-
-<!-- mouth -->
-<path d="M195 185 Q210 195 225 185
-Q211 204 195 185Z"
-fill="#DC8F99"/>
-
-${bangs()}
-
-`;
-
-}
-
-function refresh(){
-
-draw();
-
-document.querySelectorAll("button[data-type]").forEach(b=>{
-
-b.classList.toggle(
-"active",
-state[b.dataset.type]===b.dataset.value
+  }
 );
-
-});
-
-}
-
-document.querySelectorAll("button[data-type]").forEach(button=>{
-
-button.onclick=()=>{
-
-state[button.dataset.type]=button.dataset.value;
-
-refresh();
-
-};
-
-});
-
-document.getElementById("reset").onclick=()=>{
-
-Object.assign(state,{
-skin:"#F8D8C5",
-eyes:"normal",
-eyeColor:"#8D71B2",
-browColor:"#80614F",
-bangs:"straight",
-back:"longStraight",
-hairColor:"#80614F"
-});
-
-refresh();
-
-};
-
-document.getElementById("save").onclick=()=>{
-
-localStorage.setItem(
-"MY_DOLL_V1",
-JSON.stringify(state)
-);
-
-const button=document.getElementById("save");
-
-button.textContent="✓ 已儲存 ♡";
-
-setTimeout(()=>{
-button.textContent="♡ 儲存角色";
-},1300);
-
-};
-
-try{
-
-const saved=JSON.parse(
-localStorage.getItem("MY_DOLL_V1")
-);
-
-if(saved)
-Object.assign(state,saved);
-
-}catch(e){}
-
-refresh();
 
 </script>
+
 
 </body>
 </html>
